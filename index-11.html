@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DR Imaging Performance — Full Quiz</title>
+<style>
+  :root {
+    --bg:#f6f7fb; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e5e7eb;
+    --goodbg:#e8f8ee; --good:#16a34a; --badbg:#fee2e2; --bad:#dc2626;
+    --primary:#2563eb; --dark:#334155;
+  }
+  *{box-sizing:border-box}
+  body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:var(--bg); color:var(--ink);}
+  header { background: var(--ink); color:#fff; padding:16px;}
+  header h1 { margin:0; font-size:18px; }
+  header p { margin:6px 0 0; color:#cbd5e1; font-size:13px; }
+  .container { max-width: 1000px; margin:0 auto; padding:16px; }
+  .tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .tab { border:1px solid var(--line); background:var(--card); padding:10px 12px; border-radius:999px; cursor:pointer; font-weight:700; color:var(--dark);}
+  .tab.active { background:var(--primary); border-color:var(--primary); color:#fff; }
+  .card { background:var(--card); border-radius:12px; padding:16px; box-shadow:0 10px 25px rgba(0,0,0,.06); margin-bottom:16px; }
+  h2 { margin:0 0 8px; font-size:18px; }
+  .sub { color:var(--muted); font-size:13px; margin:0 0 12px; }
+  .q { margin-bottom:14px; }
+  .q p { margin:0 0 8px; font-weight:700; }
+  .opts label { display:block; padding:8px 10px; border:1px solid var(--line); border-radius:10px; margin-bottom:6px; cursor:pointer; }
+  .opts input { margin-right:8px; }
+  .correct { background:var(--goodbg); border-color:var(--good); }
+  .wrong { background:var(--badbg); border-color:var(--bad); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .btn { background:var(--primary); color:#fff; border:none; border-radius:10px; padding:10px 14px; cursor:pointer; }
+  .btn.secondary { background:var(--dark); }
+  input.ans { padding:10px; border:1px solid var(--line); border-radius:10px; width:220px; }
+  textarea.ansText { width:100%; padding:10px; border:1px solid var(--line); border-radius:10px; }
+  .feedback { margin-top:8px; font-weight:800; }
+  .feedback.good { color:var(--good); }
+  .feedback.bad { color:var(--bad); }
+  .hint { color:var(--muted); font-size:12px; margin:8px 0 0; }
+  .section { display:none; }
+  .section.active { display:block; }
+  footer { text-align:center; color:var(--muted); padding:16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Digital Radiography — Imaging Performance</h1>
+  <p>20 MCQs • 10 True/False • 10 Calculations • 10 Short Answer (instant feedback)</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" onclick="showSection('mcq')">MCQs (20)</button>
+    <button class="tab" onclick="showSection('tf')">True/False (10)</button>
+    <button class="tab" onclick="showSection('calc')">Calculations (10)</button>
+    <button class="tab" onclick="showSection('sa')">Short Answer (10)</button>
+  </div>
+
+  <div id="mcq" class="section active">
+    <div class="card">
+      <h2>MCQs</h2>
+      <p class="sub">Choose an option — green = correct, red = wrong (correct answer will also highlight).</p>
+      <div class="q" data-type="mcq" data-answer="c"><p>1) Spatial resolution is the ability to:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq1" value="a"> Display different gray levels</label><label><input type="radio" name="mcq1" value="b"> Reduce noise</label><label><input type="radio" name="mcq1" value="c"> Distinguish small, closely spaced structures</label><label><input type="radio" name="mcq1" value="d"> Increase exposure latitude</label></div></div>
+<div class="q" data-type="mcq" data-answer="c"><p>2) In DR, spatial resolution mainly depends on:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq2" value="a"> kVp selection</label><label><input type="radio" name="mcq2" value="b"> mAs value</label><label><input type="radio" name="mcq2" value="c"> Detector pixel size</label><label><input type="radio" name="mcq2" value="d"> Window/level settings</label></div></div>
+<div class="q" data-type="mcq" data-answer="d"><p>3) For the same detector size, which matrix gives best spatial resolution?</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq3" value="a"> 512×512</label><label><input type="radio" name="mcq3" value="b"> 1024×1024</label><label><input type="radio" name="mcq3" value="c"> 1536×1536</label><label><input type="radio" name="mcq3" value="d"> 2048×2048</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>4) Pixel pitch is:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq4" value="a"> Distance between pixel corners</label><label><input type="radio" name="mcq4" value="b"> Distance center-to-center of adjacent pixels</label><label><input type="radio" name="mcq4" value="c"> Total detector size</label><label><input type="radio" name="mcq4" value="d"> Matrix size</label></div></div>
+<div class="q" data-type="mcq" data-answer="c"><p>5) Higher fill factor generally results in:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq5" value="a"> Worse spatial resolution</label><label><input type="radio" name="mcq5" value="b"> More dead space</label><label><input type="radio" name="mcq5" value="c"> Better spatial and contrast resolution</label><label><input type="radio" name="mcq5" value="d"> More scatter</label></div></div>
+<div class="q" data-type="mcq" data-answer="a"><p>6) Fill factor is:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq6" value="a"> Sensing area / total pixel area</label><label><input type="radio" name="mcq6" value="b"> Total pixel area / sensing area</label><label><input type="radio" name="mcq6" value="c"> Pixel pitch / pixel size</label><label><input type="radio" name="mcq6" value="d"> Matrix size / detector size</label></div></div>
+<div class="q" data-type="mcq" data-answer="c"><p>7) Which detector has best spatial resolution?</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq7" value="a"> CR</label><label><input type="radio" name="mcq7" value="b"> Indirect DR (CsI)</label><label><input type="radio" name="mcq7" value="c"> Direct DR (a-Se)</label><label><input type="radio" name="mcq7" value="d"> Image intensifier</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>8) Indirect DR tends to have lower spatial resolution than direct DR mainly due to:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq8" value="a"> Higher kVp</label><label><input type="radio" name="mcq8" value="b"> Light spread in scintillator</label><label><input type="radio" name="mcq8" value="c"> Higher bit depth</label><label><input type="radio" name="mcq8" value="d"> More pixel rows</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>9) LSF describes:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq9" value="a"> Exposure latitude</label><label><input type="radio" name="mcq9" value="b"> Signal spread from a line object</label><label><input type="radio" name="mcq9" value="c"> DQE vs frequency</label><label><input type="radio" name="mcq9" value="d"> Dynamic range</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>10) A narrower LSF indicates:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq10" value="a"> Lower spatial resolution</label><label><input type="radio" name="mcq10" value="b"> Higher spatial resolution</label><label><input type="radio" name="mcq10" value="c"> Higher noise</label><label><input type="radio" name="mcq10" value="d"> Higher dynamic range</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>11) LSF is obtained using a:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq11" value="a"> Step wedge</label><label><input type="radio" name="mcq11" value="b"> Narrow slit</label><label><input type="radio" name="mcq11" value="c"> Uniform phantom</label><label><input type="radio" name="mcq11" value="d"> Grid</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>12) MTF measures:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq12" value="a"> Noise level</label><label><input type="radio" name="mcq12" value="b"> Contrast transfer at different spatial frequencies</label><label><input type="radio" name="mcq12" value="c"> Bit depth</label><label><input type="radio" name="mcq12" value="d"> Detector size</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>13) Spatial frequency is measured in:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq13" value="a"> μGy</label><label><input type="radio" name="mcq13" value="b"> lp/mm</label><label><input type="radio" name="mcq13" value="c"> Gray levels</label><label><input type="radio" name="mcq13" value="d"> kVp</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>14) Low spatial frequency corresponds to:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq14" value="a"> Fine detail like trabeculae</label><label><input type="radio" name="mcq14" value="b"> Large structures like abdomen</label><label><input type="radio" name="mcq14" value="c"> Quantum mottle</label><label><input type="radio" name="mcq14" value="d"> Dead pixels</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>15) High spatial frequency corresponds to:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq15" value="a"> Large organs</label><label><input type="radio" name="mcq15" value="b"> Fine detail/edges</label><label><input type="radio" name="mcq15" value="c"> Exposure latitude</label><label><input type="radio" name="mcq15" value="d"> Scatter only</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>16) As spatial frequency increases, MTF generally:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq16" value="a"> Increases</label><label><input type="radio" name="mcq16" value="b"> Decreases</label><label><input type="radio" name="mcq16" value="c"> Stays constant</label><label><input type="radio" name="mcq16" value="d"> Becomes 1</label></div></div>
+<div class="q" data-type="mcq" data-answer="d"><p>17) Limiting spatial resolution is often defined at:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq17" value="a"> MTF=1.0</label><label><input type="radio" name="mcq17" value="b"> MTF=0.5</label><label><input type="radio" name="mcq17" value="c"> MTF=0.2</label><label><input type="radio" name="mcq17" value="d"> MTF=0.1</label></div></div>
+<div class="q" data-type="mcq" data-answer="c"><p>18) Typical DR spatial resolution is about:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq18" value="a"> 0.5–1 lp/mm</label><label><input type="radio" name="mcq18" value="b"> 1–2 lp/mm</label><label><input type="radio" name="mcq18" value="c"> 2–4 lp/mm</label><label><input type="radio" name="mcq18" value="d"> 6–8 lp/mm</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>19) CR systems often reach MTF≈0.1 at about:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq19" value="a"> 1 lp/mm</label><label><input type="radio" name="mcq19" value="b"> 2 lp/mm</label><label><input type="radio" name="mcq19" value="c"> 4 lp/mm</label><label><input type="radio" name="mcq19" value="d"> 8 lp/mm</label></div></div>
+<div class="q" data-type="mcq" data-answer="b"><p>20) Mammography requires high spatial resolution mainly to detect:</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="mcq20" value="a"> Pneumonia</label><label><input type="radio" name="mcq20" value="b"> Microcalcifications</label><label><input type="radio" name="mcq20" value="c"> Pleural effusion</label><label><input type="radio" name="mcq20" value="d"> Bowel obstruction</label></div></div>
+    </div>
+  </div>
+
+  <div id="tf" class="section">
+    <div class="card">
+      <h2>True / False</h2>
+      <p class="sub">Choose True/False — instant feedback.</p>
+      <div class="q" data-type="tf" data-answer="t"><p>TF1) Limiting spatial resolution is commonly defined at MTF = 0.1.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf1" value="t"> True</label><label><input type="radio" name="tf1" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="f"><p>TF2) High spatial frequency represents large anatomical structures.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf2" value="t"> True</label><label><input type="radio" name="tf2" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="t"><p>TF3) A narrower LSF indicates better spatial resolution.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf3" value="t"> True</label><label><input type="radio" name="tf3" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="t"><p>TF4) Indirect DR uses a scintillator and may have light spread.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf4" value="t"> True</label><label><input type="radio" name="tf4" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="f"><p>TF5) Direct DR (a-Se) converts X-rays to light first.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf5" value="t"> True</label><label><input type="radio" name="tf5" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="t"><p>TF6) Wide dynamic range can contribute to dose creep.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf6" value="t"> True</label><label><input type="radio" name="tf6" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="t"><p>TF7) Quantum mottle is commonly associated with low exposure.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf7" value="t"> True</label><label><input type="radio" name="tf7" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="t"><p>TF8) A bad column artifact typically appears as a vertical line.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf8" value="t"> True</label><label><input type="radio" name="tf8" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="t"><p>TF9) MTF generally decreases as spatial frequency increases.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf9" value="t"> True</label><label><input type="radio" name="tf9" value="f"> False</label></div></div>
+<div class="q" data-type="tf" data-answer="t"><p>TF10) Mammography typically has higher spatial resolution than general DR.</p><div class="opts" oninput="instantCheck(this)"><label><input type="radio" name="tf10" value="t"> True</label><label><input type="radio" name="tf10" value="f"> False</label></div></div>
+    </div>
+  </div>
+
+  <div id="calc" class="section">
+    <div class="card">
+      <h2>Calculations</h2>
+      <p class="sub">Type your answer then press Check. Accepts small rounding differences.</p>
+      <div class="q calcq" data-type="calc" data-correct="0.64" data-tol="0.02">
+<p>CALC1) Fill factor: pixel 200 μm×200 μm, sensing area 160 μm×160 μm. Enter fill factor (decimal).</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="0.64" data-tol="0.02">
+<p>CALC2) Fill factor: pixel 300 μm×300 μm, sensing area 240 μm×240 μm. Enter fill factor (decimal).</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="0.6400000000000001" data-tol="0.02">
+<p>CALC3) DQE: SNRin=40, SNRout=32. DQE=(SNRout/SNRin)^2. Enter DQE (decimal).</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="0.48999999999999994" data-tol="0.02">
+<p>CALC4) DQE: SNRin=50, SNRout=35. Enter DQE (decimal).</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="7225344" data-tol="0.0">
+<p>CALC5) Total pixels: matrix 2688×2688. Enter total pixels.</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="5000000" data-tol="0.0">
+<p>CALC6) Total pixels: matrix 2000×2500. Enter total pixels.</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="2.0" data-tol="0.02">
+<p>CALC7) Dose reduction estimate: DQE_CR=35%, DQE_DR=70%. Dose ratio (CR/DR) ≈ DQE_DR/DQE_CR. Enter ratio.</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="10000.0" data-tol="0.02">
+<p>CALC8) Exposure latitude range (μGy): 0.1–1000. Enter dynamic range ratio (max/min).</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="2949120" data-tol="0.0">
+<p>CALC9) Pixel count: matrix 1920×1536. Enter total pixels.</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+<div class="q calcq" data-type="calc" data-correct="0.5625" data-tol="0.02">
+<p>CALC10) DQE: SNRin=60, SNRout=45. Enter DQE (decimal).</p>
+<div class="row">
+  <input inputmode="decimal" class="ans" placeholder="Type your answer" />
+  <button class="btn secondary" onclick="checkCalc(this)">Check</button>
+</div>
+<div class="feedback"></div>
+</div>
+    </div>
+  </div>
+
+  <div id="sa" class="section">
+    <div class="card">
+      <h2>Short Answer</h2>
+      <p class="sub">Write your answer, then press Check. (We check for key words.)</p>
+      <div class="q saq" data-type="sa" data-keywords="ability|distinguish|closely|spaced|structures">
+<p>SA1) Define spatial resolution in DR.</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>ability, distinguish, closely, spaced, structures</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="smaller|pixel">
+<p>SA2) State TWO factors that improve spatial resolution in DR.</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>smaller, pixel</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="signal|spread|line">
+<p>SA3) What does LSF represent?</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>signal, spread, line</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="better|spatial|resolution">
+<p>SA4) What does a narrower LSF indicate?</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>better, spatial, resolution</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="contrast|transfer|spatial|frequency">
+<p>SA5) Define MTF.</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>contrast, transfer, spatial, frequency</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="large|structures">
+<p>SA6) What does low spatial frequency represent?</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>large, structures</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="fine|detail">
+<p>SA7) What does high spatial frequency represent?</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>fine, detail</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="range|exposure">
+<p>SA8) Define dynamic range in DR.</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>range, exposure</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="dose|creep">
+<p>SA9) Give ONE disadvantage of wide dynamic range.</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>dose, creep</b></p>
+</div>
+<div class="q saq" data-type="sa" data-keywords="pixel">
+<p>SA10) Name TWO common flat-panel detector artifacts.</p>
+<textarea class="ansText" rows="3" placeholder="Write your answer here..."></textarea>
+<div class="row">
+  <button class="btn secondary" onclick="checkSA(this)">Check</button>
+</div>
+<div class="feedback"></div>
+<p class="hint">Hint: include keywords like <b>pixel</b></p>
+</div>
+    </div>
+  </div>
+
+  <footer>Deploy on Netlify: drag & drop the ZIP or the index.html.</footer>
+</div>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const map={mcq:0,tf:1,calc:2,sa:3};
+  document.querySelectorAll('.tab')[map[id]].classList.add('active');
+}
+
+function instantCheck(container){
+  const q = container.closest('.q');
+  const ans = q.dataset.answer;
+  q.querySelectorAll('label').forEach(l => l.classList.remove('correct','wrong'));
+  const checked = container.querySelector('input:checked');
+  if(!checked) return;
+  const lbl = checked.parentElement;
+  if(checked.value === ans) lbl.classList.add('correct');
+  else {
+    lbl.classList.add('wrong');
+    const right = q.querySelector(`input[value="${ans}"]`).parentElement;
+    right.classList.add('correct');
+  }
+}
+
+function parseNumber(v){ 
+  if(!v) return NaN;
+  v = v.replace(/,/g,'').trim();
+  return Number(v);
+}
+
+function checkCalc(btn){
+  const q = btn.closest('.calcq');
+  const correct = parseNumber(q.dataset.correct);
+  const tol = parseNumber(q.dataset.tol);
+  const input = q.querySelector('input.ans').value;
+  const val = parseNumber(input);
+  const fb = q.querySelector('.feedback');
+  fb.classList.remove('good','bad');
+  if(Number.isNaN(val)){ fb.textContent = 'Please enter a number.'; fb.classList.add('bad'); return; }
+  let ok = false;
+  if(tol === 0) ok = (Math.round(val) === Math.round(correct));
+  else {
+    const diff = Math.abs(val - correct);
+    ok = diff <= Math.max(1e-12, tol * Math.abs(correct));
+  }
+  if(ok){ fb.textContent = '✅ Correct'; fb.classList.add('good'); }
+  else { fb.textContent = `❌ Wrong. Correct answer ≈ ${formatCorrect(correct)}`; fb.classList.add('bad'); }
+}
+
+function formatCorrect(x){
+  if(Math.abs(x) >= 1e6) return Math.round(x).toLocaleString();
+  if(Number.isInteger(x)) return x.toLocaleString();
+  return (Math.round(x*1000)/1000).toString();
+}
+
+function normalizeText(s){
+  return (s||'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function checkSA(btn){
+  const q = btn.closest('.saq');
+  const kws = q.dataset.keywords.split('|').map(k=>k.trim()).filter(Boolean);
+  const text = normalizeText(q.querySelector('textarea.ansText').value);
+  const fb = q.querySelector('.feedback');
+  fb.classList.remove('good','bad');
+  if(!text){ fb.textContent='Please write an answer.'; fb.classList.add('bad'); return; }
+  const missing = kws.filter(k => !text.includes(k));
+  if(missing.length===0){ fb.textContent='✅ Correct'; fb.classList.add('good'); }
+  else { fb.textContent = '❌ Not enough key points. Missing: ' + missing.join(', '); fb.classList.add('bad'); }
+}
+</script>
+
+</body>
+</html>
